@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Mercado Araponga | O melhor da Jaqueira</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f7ff;
+            color: #1e2a3e;
+        }
+
+        /* Cores Azul Tema */
+        :root {
+            --azul-escuro: #0a2b4e;
+            --azul-principal: #1e4a76;
+            --azul-vivo: #2c7da0;
+            --azul-claro: #e6f0fa;
+            --destaque: #ff8c42;
+            --destaque-hover: #e67e22;
+        }
+
+        /* Header */
+        .top-bar {
+            background: var(--azul-escuro);
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-size: 0.8rem;
+        }
+
+        .main-header {
+            background: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 3px solid var(--azul-vivo);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo h1 {
+            color: var(--azul-principal);
+            font-size: 2rem;
+        }
+        .logo p {
+            color: var(--azul-vivo);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .search-box {
+            display: flex;
+            border: 2px solid var(--azul-claro);
+            border-radius: 40px;
+            overflow: hidden;
+        }
+        .search-box input {
+            padding: 10px 20px;
+            width: 250px;
+            border: none;
+            outline: none;
+        }
+        .search-box button {
+            background: var(--azul-principal);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+
+        .cart {
+            font-size: 1.2rem;
+            background: var(--azul-claro);
+            padding: 8px 16px;
+            border-radius: 30px;
+        }
+
+        /* Navegação */
+        .nav-categories {
+            background: var(--azul-principal);
+            padding: 12px 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+        .nav-categories a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-categories a:hover {
+            color: var(--destaque);
+        }
+
+        /* Banner */
+        .hero {
+            background: linear-gradient(135deg, var(--azul-claro) 0%, #bbdef5 100%);
+            margin: 20px 40px;
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+        }
+        .hero h2 {
+            color: var(--azul-escuro);
+            font-size: 2rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        /* Container geral */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Seção de categoria */
+        .category-section {
+            margin: 40px 0;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--azul-escuro);
+            border-left: 6px solid var(--destaque);
+            padding-left: 15px;
+            margin-bottom: 25px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .product-img {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin: 8px 0;
+            color: #1e293b;
+        }
+
+        .product-price {
+            color: var(--azul-vivo);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .btn-add {
+            background: var(--azul-principal);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+            width: 100%;
+        }
+        .btn-add:hover {
+            background: var(--azul-escuro);
+        }
+
+        /* Diferencial */
+        .info-banner {
+            background: var(--azul-escuro);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f2b3d;
+            color: #ccc;
+            padding: 40px;
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        .copyright {
+            background: #08212e;
+            text-align: center;
+            padding: 15px;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .hero {
+                margin: 20px;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        🚚 Entregas grátis para compras acima de R$ 150,00 na Jaqueira e região | 🎁 Clube de Vantagens Araponga
+    </div>
+
+    <div class="main-header">
+        <div class="logo">
+            <h1>🛒 Mercado Araponga</h1>
+            <p>Brasileiro como você | Tradição em Três Rios</p>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Busque por arroz, bebidas, chocolates...">
+            <button>🔍 Buscar</button>
+        </div>
+        <div class="cart">
+            🛍️ Minha Sacola | R$ 0,00
+        </div>
+    </div>
+
+    <div class="nav-categories">
+        <a href="#">Mercearia</a>
+        <a href="#">Bebidas</a>
+        <a href="#">Frios & Laticínios</a>
+        <a href="#">Açougue</a>
+        <a href="#">Hortifrúti</a>
+        <a href="#">Doces & Biscoitos</a>
+        <a href="#">Congelados</a>
+        <a href="#">Limpeza</a>
+        <a href="#">Higiene</a>
+    </div>
+
+    <div class="hero">
+        <h2>Ofertas imperdíveis do Mercado Araponga</h2>
+        <p>Produtos frescos, preços baixos e entrega rápida. A Jaqueira é nossa casa!</p>
+    </div>
+
+    <div class="container">
+        <!-- ================= MERCEARIA BÁSICA ================= -->
+        <div class="category-section">
+            <h3 class="category-title">🥫 Mercearia Básica</h3>
+            <div class="products-grid">
+                <div class="product-card"><div class="product-img">🍚</div><div class="product-name">Arroz Branco (5kg)</div><div class="product-price">R$ 24,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🫘</div><div class="product-name">Feijão Carioca (1kg)</div><div class="product-price">R$ 8,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍝</div><div class="product-name">Macarrão Espaguete</div><div class="product-price">R$ 4,79</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🌾</div><div class="product-name">Farinha de Trigo</div><div class="product-price">R$ 5,49</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍬</div><div class="product-name">Açúcar Cristal (5kg)</div><div class="product-price">R$ 16,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🧂</div><div class="product-name">Sal Refinado</div><div class="product-price">R$ 2,39</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🫒</div><div class="product-name">Azeite de Oliva</div><div class="product-price">R$ 19,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🥫</div><div class="product-name">Molho de Tomate</div><div class="product-price">R$ 3,29</div><button class="btn-add">Adicionar</button></div>
+            </div>
+        </div>
+
+        <!-- ================= BEBIDAS ================= -->
+        <div class="category-section">
+            <h3 class="category-title">🥤 Bebidas</h3>
+            <div class="products-grid">
+                <div class="product-card"><div class="product-img">🥤</div><div class="product-name">Coca-Cola 2L</div><div class="product-price">R$ 9,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🧃</div><div class="product-name">Guaraná Antárctica 2L</div><div class="product-price">R$ 8,79</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">💧</div><div class="product-name">Água Mineral s/gás</div><div class="product-price">R$ 2,99</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍺</div><div class="product-name">Cerveja Brahma (latão)</div><div class="product-price">R$ 5,49</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍷</div><div class="product-name">Vinho Tinto Seco</div><div class="product-price">R$ 24,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🥛</div><div class="product-name">Leite Integral (1L)</div><div class="product-price">R$ 4,89</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🧃</div><div class="product-name">Suco de Laranja Kapo</div><div class="product-price">R$ 3,69</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍵</div><div class="product-name">Chá Matte Leão</div><div class="product-price">R$ 4,29</div><button class="btn-add">Adicionar</button></div>
+            </div>
+        </div>
+
+        <!-- ================= DOCES, BISCOITOS E CHOCOLATES ================= -->
+        <div class="category-section">
+            <h3 class="category-title">🍫 Doces, Biscoitos & Chocolates</h3>
+            <div class="products-grid">
+                <div class="product-card"><div class="product-img">🍪</div><div class="product-name">Biscoito Cream Cracker</div><div class="product-price">R$ 3,49</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍪</div><div class="product-name">Biscoito Maisena</div><div class="product-price">R$ 3,29</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍫</div><div class="product-name">Chocolate Diamante Negro</div><div class="product-price">R$ 5,99</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍫</div><div class="product-name">Chocolate ao Leite Lacta</div><div class="product-price">R$ 6,49</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍬</div><div class="product-name">Bala Fini (sortida)</div><div class="product-price">R$ 2,89</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍬</div><div class="product-name">Pirulito</div><div class="product-price">R$ 0,99</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍰</div><div class="product-name">Bolacha recheada (Oreo)</div><div class="product-price">R$ 4,39</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍩</div><div class="product-name">Suspiro (pacote)</div><div class="product-price">R$ 5,90</div><button class="btn-add">Adicionar</button></div>
+            </div>
+        </div>
+
+        <!-- ================= FRIOS E LATICÍNIOS ================= -->
+        <div class="category-section">
+            <h3 class="category-title">🧀 Frios & Laticínios</h3>
+            <div class="products-grid">
+                <div class="product-card"><div class="product-img">🧀</div><div class="product-name">Queijo Mussarela (kg)</div><div class="product-price">R$ 38,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍖</div><div class="product-name">Presunto (kg)</div><div class="product-price">R$ 34,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🥓</div><div class="product-name">Mortadela (kg)</div><div class="product-price">R$ 22,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🥛</div><div class="product-name">Iogurte Natural</div><div class="product-price">R$ 3,89</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🧈</div><div class="product-name">Manteiga (200g)</div><div class="product-price">R$ 12,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🥛</div><div class="product-name">Requeijão Cremoso</div><div class="product-price">R$ 9,90</div><button class="btn-add">Adicionar</button></div>
+            </div>
+        </div>
+
+        <!-- ================= AÇOUGUE ================= -->
+        <div class="category-section">
+            <h3 class="category-title">🥩 Açougue</h3>
+            <div class="products-grid">
+                <div class="product-card"><div class="product-img">🍗</div><div class="product-name">Frango (peito) kg</div><div class="product-price">R$ 16,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🥩</div><div class="product-name">Alcatra (kg)</div><div class="product-price">R$ 49,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🥩</div><div class="product-name">Contrafilé (kg)</div><div class="product-price">R$ 52,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🐷</div><div class="product-name">Linguiça Toscana</div><div class="product-price">R$ 19,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🐟</div><div class="product-name">Salmão em posta (kg)</div><div class="product-price">R$ 69,90</div><button class="btn-add">Adicionar</button></div>
+            </div>
+        </div>
+
+        <!-- ================= HORTIFRÚTI ================= -->
+        <div class="category-section">
+            <h3 class="category-title">🥬 Hortifrúti</h3>
+            <div class="products-grid">
+                <div class="product-card"><div class="product-img">🍌</div><div class="product-name">Banana prata (kg)</div><div class="product-price">R$ 5,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍎</div><div class="product-name">Maçã Fuji (kg)</div><div class="product-price">R$ 9,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍊</div><div class="product-name">Laranja pera (kg)</div><div class="product-price">R$ 4,49</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🥬</div><div class="product-name">Alface crespa</div><div class="product-price">R$ 2,99</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍅</div><div class="product-name">Tomate (kg)</div><div class="product-price">R$ 6,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🥔</div><div class="product-name">Batata inglesa (kg)</div><div class="product-price">R$ 5,49</div><button class="btn-add">Adicionar</button></div>
+            </div>
+        </div>
+
+        <!-- ================= CONGELADOS ================= -->
+        <div class="category-section">
+            <h3 class="category-title">❄️ Congelados</h3>
+            <div class="products-grid">
+                <div class="product-card"><div class="product-img">🍦</div><div class="product-name">Sorvete Kibon (2L)</div><div class="product-price">R$ 32,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍔</div><div class="product-name">Hambúrguer (6un)</div><div class="product-price">R$ 18,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🥦</div><div class="product-name">Legumes congelados</div><div class="product-price">R$ 7,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🍕</div><div class="product-name">Pizza congelada</div><div class="product-price">R$ 15,90</div><button class="btn-add">Adicionar</button></div>
+            </div>
+        </div>
+
+        <!-- ================= LIMPEZA E HIGIENE ================= -->
+        <div class="category-section">
+            <h3 class="category-title">🧼 Limpeza & Higiene</h3>
+            <div class="products-grid">
+                <div class="product-card"><div class="product-img">🧴</div><div class="product-name">Detergente Ypê</div><div class="product-price">R$ 2,19</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🧺</div><div class="product-name">Sabão em pó Omo (1kg)</div><div class="product-price">R$ 12,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🧻</div><div class="product-name">Papel Higiênico (12un)</div><div class="product-price">R$ 15,90</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🧼</div><div class="product-name">Sabonete Dove</div><div class="product-price">R$ 2,49</div><button class="btn-add">Adicionar</button></div>
+                <div class="product-card"><div class="product-img">🪥</div><div class="product-name">Creme Dental Colgate</div><div class="product-price">R$ 3,89</div><button class="btn-add">Adicionar</button></div>
+            </div>
+        </div>
+
+        <div class="info-banner">
+            <h3>📍 Mercado Araponga – Sempre perto de você</h3>
+            <p>Av. Alan Kardec, 796 – Vila Isabel, Três Rios – RJ | 📞 (24) 2255-7270</p>
+            <p>🔵 Entregas grátis na Jaqueira e região | 🟡 Aceitamos todas as formas de pagamento</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-col"><h4>Mercado Araponga</h4><p>Sobre nós</p><p>Nossa história</p><p>Trabalhe conosco</p></div>
+        <div class="footer-col"><h4>Atendimento</h4><p>Central de vendas</p><p>Entregas</p><p>Política de troca</p></div>
+        <div class="footer-col"><h4>Contato</h4><p>(24) 2255-7270</p><p>arapongasupermercado@bol.com.br</p><p>Segunda a Sábado: 7h às 21h</p></div>
+    </div>
+    <div class="copyright">
+        © 2026 Mercado Araponga – Brasileiro como você. Todos os direitos reservados.
+    </div>
+</body>
+                                                                                                                                                                                                     </html>
